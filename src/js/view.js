@@ -27,6 +27,16 @@ export function View(doc){
     let onModeChange = null;
     let onApiKey  = null;
 
+
+    function lockField(){
+        let key = localStorage.getItem("groq_key");
+        if(!key) return;
+        apiInput.value = '';
+        apiInput.placeholder = 'Key is Stored';
+        apiInput.disabled = true;
+
+    }
+
     /**
      * Renders the chat messages list from state.
      * Shows empty state message when no messages exist.
@@ -167,6 +177,9 @@ export function View(doc){
         });
     }
 
+    if (modeSelect) modeSelect.value = localStorage.getItem('chat_mode') || 'eliza';
+    if (apiInput)   apiInput.value   = localStorage.getItem('groq_key')  || '';
+
     if(modeSelect){
         modeSelect.addEventListener("change", function () {
             if(typeof onModeChange === "function") onModeChange(modeSelect.value);
@@ -178,8 +191,8 @@ export function View(doc){
             e.preventDefault();
             let key = apiInput.value.trim();
             if (!key) return;
-            if(typeof onApiKey === "function") onApiKey(key);
-            apiInput.value = "";
+            if(key && typeof onApiKey === "function") onApiKey(key);
+            lockField();
         })
     }
 
@@ -193,7 +206,6 @@ export function View(doc){
         set onDelete(fn) { onDelete = fn; },
         set onModeChange(fn) { onModeChange = fn; },
         set onApiKey(fn) { onApiKey = fn; }
-
     };
 
 }
