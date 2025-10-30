@@ -8,8 +8,12 @@
 
 
 import { getBotResponse } from "./eliza.js";
+import {askLLM} from "./llm.js";
 
 export function Controller (model, view) {
+
+    let mode = "eliza";
+    let apiKey = "";
 
     /**
      * Sets up the model change listener to automatically update the view when state changes.
@@ -25,8 +29,20 @@ export function Controller (model, view) {
      */
     view.onSend = function(text){
         model.add(text, "user");
-        let reply = getBotResponse(text);
-        model.add(reply, "bot");
+
+        if (mode === "eliza") {
+            let reply = getBotResponse(text);
+            model.add(reply, "bot");
+        } else if (mode === "eliza") {
+            askLLM(apiKey, text, function (replyText, err){
+                if(err){
+                    model.add("LLM error:"+ err, "bot")
+                } else{
+                    model.add(replyText, "bot");
+                }
+            })
+        }
+
     }
 
     /**
@@ -82,4 +98,15 @@ export function Controller (model, view) {
     view.onClear = function(){
         model.clear();
     }
+
+    view.onModeChange = function(newMode){
+        mode = newMode;
+    }
+
+    view.onApiKey = function(key){
+        apiKey =key;
+        localStorage.setItem("groq_key", apiKey);
+    }
+
+
 }
