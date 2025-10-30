@@ -14,12 +14,18 @@ export function View(doc){
     let impButton = d.getElementById("importButton");
     let clrButton = d.getElementById("clearButton");
 
+    let modeSelect = d.getElementById("mode");
+    let apiForm = d.getElementById("api-input");
+    let apiInput = d.getElementById("apiKey");
+
     let onSend = null;
     let onImport = null;
     let onExport = null;
     let onClear = null;
     let onEdit = null;
     let onDelete = null;
+    let onModeChange = null;
+    let onApiKey  = null;
 
     /**
      * Renders the chat messages list from state.
@@ -161,6 +167,22 @@ export function View(doc){
         });
     }
 
+    if(modeSelect){
+        modeSelect.addEventListener("change", function () {
+            if(typeof onModeChange === "function") onModeChange(modeSelect.value);
+        })
+    }
+
+    if(apiForm){
+        apiForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            let key = apiInput.value.trim();
+            if (!key) return;
+            if(typeof onApiKey === "function") onApiKey(key);
+            apiInput.value = "";
+        })
+    }
+
     return{
         render: render,
         set onSend(fn)   { onSend = fn;   },
@@ -168,7 +190,10 @@ export function View(doc){
         set onImport(fn) { onImport = fn; },
         set onClear(fn)  { onClear = fn;  },
         set onEdit(fn)   { onEdit = fn;   },
-        set onDelete(fn) { onDelete = fn; }
+        set onDelete(fn) { onDelete = fn; },
+        set onModeChange(fn) { onModeChange = fn; },
+        set onApiKey(fn) { onApiKey = fn; }
+
     };
 
 }
