@@ -28,6 +28,19 @@
         <button id="importButton" class="btn"> 📥 Import Chat</button>
         <button id="clearButton" class="btn">🗑️ Clear All</button>
 
+        <label>
+            Mode:
+            <select id="mode">
+                <option value="eliza">Eliza (local)</option>
+                <option value="groq">Groq (cloud)</option>
+            </select>
+        </label>
+
+        <form class = "api-input">
+            <input id="apiKey" type="text" placeholder="API Key" />
+            <button type = "submit">Submit</button>
+        </form>
+
     </section>
 
     <section class="messages"></section>
