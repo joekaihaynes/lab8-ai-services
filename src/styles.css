@@ -177,3 +177,18 @@ input{
     cursor : pointer;
     border: none;
 }
+
+#api-input button{
+    padding: 1rem;
+    min-width: 6rem;
+    border-radius: var(--radius);
+    color: white;
+    background-color: royalblue;
+    cursor : pointer;
+    border: none;
+}
+
+.empty-convo{
+    margin: auto;
+    text-align: center;
+}
