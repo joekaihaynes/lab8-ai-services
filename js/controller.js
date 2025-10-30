@@ -12,8 +12,8 @@ import {askLLM} from "./llm.js";
 
 export function Controller (model, view) {
 
-    let mode = "eliza";
-    let apiKey = "";
+    let mode   = localStorage.getItem('chat_mode') || 'eliza';
+    let apiKey = localStorage.getItem('groq_key')  || '';
 
     /**
      * Sets up the model change listener to automatically update the view when state changes.
@@ -33,7 +33,7 @@ export function Controller (model, view) {
         if (mode === "eliza") {
             let reply = getBotResponse(text);
             model.add(reply, "bot");
-        } else if (mode === "eliza") {
+        } else if (mode === "groq") {
             askLLM(apiKey, text, function (replyText, err){
                 if(err){
                     model.add("LLM error:"+ err, "bot")
@@ -101,10 +101,11 @@ export function Controller (model, view) {
 
     view.onModeChange = function(newMode){
         mode = newMode;
+        localStorage.setItem('chat_mode', mode);
     }
 
     view.onApiKey = function(key){
-        apiKey =key;
+        apiKey =key.trim();
         localStorage.setItem("groq_key", apiKey);
     }
 
