@@ -40,6 +40,8 @@ lab8-ai-services/
 | **OpenRouter** | 10M tokens free/mo   | Fast        | Excellent   | Free tier + pay-as-you-go | Cloud   | **Chosen**      |
 | **Groq**       | 1M tokens free/mo    | Very Fast   | Good        | Free tier             | Cloud   | Runner-up       |
 
+- Used Groq because of the unlimited uses 
+
 
 # 1. **API Key Security in Client-Side Apps**
 **Challenge:**  
