@@ -27,7 +27,7 @@ lab8-ai-services/
 │       └── view.js
 ├── tests/
 │   ├── eliza.spec.js
-│   └── grok.spec.js
+│   └── groq.spec.js
 ├── .gitignore
 ├── README.md
 ├── LICENSE
@@ -65,7 +65,7 @@ Cloud AI responses vary → Playwright tests fail due to string mismatches.
 
 
 ### Link
-
+https://joekaihaynes.github.io/lab8-ai-services/
 
 ## Author
 Joe Haynes
