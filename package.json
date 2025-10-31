@@ -1,0 +1,24 @@
+{
+  "name": "lab8-ai-services",
+  "version": "1.0.0",
+  "description": "This lab builds directly on Lab 7 (MVC Chat App with CRUD + Persistence) and introduces an AI Service Layer to integrate real large language models\r (LLMs) like OpenAI, Groq, and OpenRouter while keeping the core app modular, testable, and secure.\r The project adds a configurable AI provider system and end-to-end testing using Playwright, reflecting real-world software engineering practices.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joekaihaynes/lab8-ai-services.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/joekaihaynes/lab8-ai-services/issues"
+  },
+  "homepage": "https://github.com/joekaihaynes/lab8-ai-services#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.2",
+    "serve": "^14.2.5"
+  }
+}
